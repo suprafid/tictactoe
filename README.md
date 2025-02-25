@@ -138,7 +138,7 @@ curl -X GET "http://localhost:8080/tictactoe/updateBoardSize?size=5"
 
 
 🎯 Rules of the Game
-Player chooses 'X' or 'O' at the start.
-Player moves first, then AI makes a random move.
-Game ends when a player wins or the board is full.
-No hardcoded board size—you can change it dynamically.
+* Player chooses 'X' or 'O' at the start.
+* Player moves first, then AI makes a random move.
+* Game ends when a player wins or the board is full.
+* No hardcoded board size—you can change it dynamically.
