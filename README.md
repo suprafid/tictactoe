@@ -122,10 +122,10 @@ Update the board size dynamically (must be between 3 and 10).
 
 ✅ Request
 ```sh
-curl -X GET "http://localhost:8080/tictactoe/updateBoardSize?size=5"
+curl -X GET "http://localhost:8080/tictactoe/board-size?size=5"
 ```
 📌 Open in browser:
-👉 http://localhost:8080/tictactoe/updateBoardSize?size=5
+👉 http://localhost:8080/tictactoe/board-size?size=5
 
 (Change size=5 to any value between 3-10.)
 
