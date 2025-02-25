@@ -5,6 +5,8 @@ import com.tictactoe.model.Board;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 @Service
@@ -29,7 +31,7 @@ public class TicTacToeService {
         return "Game started with board size: " + gameConfig.getBoardSize() + "x" + gameConfig.getBoardSize();
     }
 
-    public char[][] makeMove(int row, int col) {
+    public Map<String, Object> makeMove(int row, int col) {
         if (!gameStarted) {
             throw new IllegalArgumentException("Game has not started! Start a new game first.");
         }
@@ -42,6 +44,7 @@ public class TicTacToeService {
         // Check if player won
         if (board.checkWinner(playerSymbol)) {
             gameStarted = false;
+            return createResponse("Player win!!", board.getGrid());
         }
 
         // AI Move (random)
@@ -50,14 +53,17 @@ public class TicTacToeService {
         // Check if AI won
         if (board.checkWinner(aiSymbol)) {
             gameStarted = false;
+            return createResponse("AI win!!", board.getGrid());
         }
 
         // Check for draw
         if (board.isFull()) {
             gameStarted = false;
+            return createResponse("Draw!", board.getGrid());
         }
 
-        return board.getGrid();
+        String message = "Player " + playerSymbol + " moved.";
+        return createResponse(message, board.getGrid());
     }
 
     public char[][] getBoard() {
@@ -87,5 +93,13 @@ public class TicTacToeService {
             row = random.nextInt(size);
             col = random.nextInt(size);
         } while (!board.makeMove(row, col, player));
+    }
+
+
+    private Map<String, Object> createResponse(String message, char[][] boardState) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", message);
+        response.put("board", boardState);
+        return response;
     }
 }

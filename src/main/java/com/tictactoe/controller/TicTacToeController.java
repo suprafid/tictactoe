@@ -4,6 +4,8 @@ import com.tictactoe.service.TicTacToeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/tictactoe")
 @RequiredArgsConstructor
@@ -16,7 +18,7 @@ public class TicTacToeController {
     }
 
     @GetMapping("/move")
-    public char[][] makeMove(@RequestParam int row, @RequestParam int col) {
+    public Map<String, Object> makeMove(@RequestParam int row, @RequestParam int col) {
         return ticTacToeService.makeMove(row, col);
     }
 
